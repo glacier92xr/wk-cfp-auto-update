@@ -36,6 +36,7 @@
    | ----------------- | ---- | ------------------------------ |
    | `CF_API_TOKEN`    | 是   | Cloudflare API Token           |
    | `CF_ACCOUNT_ID`   | 是   | Cloudflare 账户 ID             |
+   | `CF_VAR_PASSWORD` | 否   | Worker 密码                    |
    | `CF_VAR_UUID`     | 否   | Worker 环境变量 UUID 值        |
    | `CF_VAR_SUB_PATH` | 否   | Worker 订阅路径                |
    | `CF_ROUTE_DOMAIN` | 否   | 自定义域名（如 `example.com`） |
@@ -146,13 +147,14 @@ wk-cfp-auto-update/
 
 ### 1. GitHub Secrets 配置
 
-| 名称              | 必填 | 权限要求                                | 说明                                           |
-| ----------------- | ---- | --------------------------------------- | ---------------------------------------------- |
-| `CF_API_TOKEN`    | 是   | 编辑 Cloudflare Workers、自定义域名编辑 | Cloudflare API Token                           |
-| `CF_ACCOUNT_ID`   | 是   | -                                       | Cloudflare 账户 ID（Dashboard URL 中获取）     |
-| `CF_VAR_UUID`     | 否   | -                                       | 更新 `wrangler.toml` 中 `[vars].UUID` 的值     |
-| `CF_VAR_SUB_PATH` | 否   | -                                       | 更新 `wrangler.toml` 中 `[vars].SUB_PATH` 的值 |
-| `CF_ROUTE_DOMAIN` | 否   | -                                       | 自定义域名，配置后自动启用自定义路由           |
+| 名称                  | 必填 | 权限要求                                | 说明                                           |
+| --------------------- | ---- | --------------------------------------- | ---------------------------------------------- |
+| `CF_API_TOKEN`        | 是   | 编辑 Cloudflare Workers、自定义域名编辑 | Cloudflare API Token                           |
+| `CF_ACCOUNT_ID`       | 是   | -                                       | Cloudflare 账户 ID（Dashboard URL 中获取）     |
+| `CF_VAR_PASSWORD`     | 否   | -                                       | 更新 `wrangler.toml` 中 `[vars].PASSWORD` 的值 |
+| `CF_VAR_UUID`         | 否   | -                                       | 更新 `wrangler.toml` 中 `[vars].UUID` 的值     |
+| `CF_VAR_SUB_PATH`     | 否   | -                                       | 更新 `wrangler.toml` 中 `[vars].SUB_PATH` 的值 |
+| `CF_VAR_ROUTE_DOMAIN` | 否   | -                                       | 自定义域名，配置后自动启用自定义路由           |
 
 ### 2. 工作流环境变量
 
@@ -174,6 +176,7 @@ workers_dev = false
 preview_urls = true
 
 [vars]
+PASSWORD = "123456"
 UUID = "your-uuid-here"
 SUB_PATH = "sub"
 
