@@ -7,9 +7,11 @@ preview_urls = true
 
 
 [vars]
+PASSWORD = "123456"
 # 修改为自己uuid
 UUID = "cee6664d-c051-4a90-9d8c-8c47094192e5"
 SUB_PATH = "sub"
+
 
 [[kv_namespaces]]
 binding = "KV"

@@ -107,6 +107,23 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
 
+      - name: 更新 wrangler.toml 中的 PASSWORD 变量
+        if: env.need_update == 'true'
+        run: |
+          cd "$GITHUB_WORKSPACE"
+
+          # 检查 secrets.CF_VAR_PASSWORD 是否设置
+          if [ -n "${{ secrets.CF_VAR_PASSWORD }}" ]; then
+            echo "正在更新 wrangler.toml 中的 PASSWORD 变量..."
+
+            # 使用 sed 更新 wrangler.toml 中的 PASSWORD 值
+            sed -i '/^PASSWORD = ".*"/c\PASSWORD = "'"${{ secrets.CF_VAR_PASSWORD }}"'"' wrangler.toml
+
+            echo "wrangler.toml 中的 PASSWORD 变量已更新"
+          else
+            echo "secrets.CF_VAR_PASSWORD 未设置，跳过更新"
+          fi
+
       - name: 更新 wrangler.toml 中的 UUID 变量
         if: env.need_update == 'true'
         run: |
